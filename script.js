@@ -5,7 +5,6 @@ const phoneLoad = async (searchText, isShowAll) =>{
     // console.log(phones);
     displayPhone(phones, isShowAll);
 };
-
 const displayPhone = (phones, isShowAll) => {
     const phoneContainer = document.getElementById('phone-container');
     // display show all button if there are more than 12 phones
@@ -33,7 +32,7 @@ const displayPhone = (phones, isShowAll) => {
                 <h2 class="card-title">${phone.phone_name}</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div class="card-actions justify-center">
-                    <button onclick"handleShowDetails('${phone.slug}')" class="btn btn-primary">Buy Now</button>
+                <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
                 </div>
             </div>
         </div>
@@ -43,7 +42,6 @@ const displayPhone = (phones, isShowAll) => {
     // hide loading spinner
     loadingSpinner(false);
 };
-
 // handle search option
 const handleSearch = (isShowAll) =>{
     loadingSpinner(true);
@@ -52,7 +50,6 @@ const handleSearch = (isShowAll) =>{
     // console.log(searchText);
     phoneLoad(searchText, isShowAll);
 };
-
 // handle loading spinner
 const loadingSpinner = (isShowAll) =>{
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -70,29 +67,33 @@ const handleShowAll = () =>{
 };
 
 // handle show details button
-const handleShowDetails = async(id) =>{ 
-    console.log(id);
-    const response = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
-    const data = response.json();
+const handleShowDetails = async(id) =>{
+    // console.log(id);
+    // load single Phone Data
+    const response = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await response.json()
     // console.log(data);
     const phone = data.data;
     showPhoneDetails(phone);
 }
 
 const showPhoneDetails = (phone) =>{
+    console.log(phone);
     const phoneName = document.getElementById("show-detail-phone-name");
     phoneName.innerText = phone.name;
     const showDetailContainer =document.getElementById('show-detail-container');
     showDetailContainer.innerHTML =`
-        <img src="${phone.image}" alt="">
+        <div class="flex justify-center border">
+            <img class="my-5" src="${phone.image}" alt="">
+        </div>
         
-        <p><span>Storage: </span>${phone?.mainFeatures?.storage}</p>
-        <p><span> DisplaySize: </span>${phone?.mainFeatures?.displaySize}</p>
-        <p><span> memory: </span>${phone?.mainFeatures?.memory}</p>
-        <p><span>ChipSet: </span>${phone?.mainFeatures?.chipSet}</p>
-        <p><span>ChipSet: </span>${phone?.mainFeatures?.slug}</p>
-        <p><span>ReleaseDate: </span>${phone.releaseDate}</p>
-        <p><span>Brand: </span>${phone.brand}</p>
+        <p><span class="text-lg font-extrabold">Storage: </span>${phone?.mainFeatures?.storage}</p>
+        <p><span class="text-lg font-extrabold"> DisplaySize: </span>${phone?.mainFeatures?.displaySize}</p>
+        <p><span class="text-lg font-extrabold"> memory: </span>${phone?.mainFeatures?.memory}</p>
+        <p><span class="text-lg font-extrabold">ChipSet: </span>${phone?.mainFeatures?.chipSet}</p>
+        <p><span class="text-lg font-extrabold">ChipSet: </span>${phone?.mainFeatures?.slug}</p>
+        <p><span class="text-lg font-extrabold">ReleaseDate: </span>${phone.releaseDate}</p>
+        <p><span class="text-lg font-extrabold">Brand: </span>${phone.brand}</p>
     `
 
     // show Phone modal

@@ -23,22 +23,33 @@
 
                     <input id="search-field" type="text" class="lg:w-[600px]  outline-none" placeholder="Search" />
                   </label>
+                  <!-- ---------------- -->
                 <button onclick="handleSearch()" class="btn btn-success text-white rounded-none rounded-r-xl text-lg px-6">Search</button>
             </div>
         </section>
-        <!-- phone Card -->
+        
         <section>
             <!-- spinner or loader -->
             <div id="loading-spinner" class="text-center my-12 hidden">
                 <span class="loading loading-spinner text-success loading-lg"></span>
             </div>
-
+            <!-- phone Card -->
             <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-8">
-               
+              <!-- <div class="card w-full bg-base-100 shadow-xl">
+                <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">Shoes!</h2>
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                  </div>
+                </div>
+              </div> -->
             </div>
 
             <!-- Show All Button -->
-            <div id="show-all" class="flex justify-center my-10 hidden">
+            <div id="show-all" class=" text-center my-10 hidden">
+              <!-- -------------- -->
                 <button onclick="handleShowAll()" class="btn btn-success text-white text-lg px-8">Show All</button>
             </div>
 
@@ -49,23 +60,33 @@
              <!-- <button class="btn" onclick="show_details_modal.showModal()">open modal</button> -->
              <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
                <div class="modal-box">
-                 <h3 id="show-detail-phone-name" class="font-bold text-lg">Hello!</h3>
+                <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
                  <div id="show-detail-container">
  
                  </div>
                  <div class="modal-action">
-                   <form method="dialog">
-                     <!-- if there is a button in form, it will close the modal -->
-                     <button class="btn">Close</button>
-                   </form>
+                   
                  </div>
                </div>
              </dialog>
+
+             <!-- error message -->
+         </section>
+         <div id="error-element" class="mt-12 hidden">
+          <img class="mx-auto" src="logo/Icon.png" alt="">
+          <h1 class="text-3xl mt-3 text-slate-600 text-center">Opps!! There are No data For this Category</h1>
+      </div>
+         <section>
+
          </section>
     </main>
     <footer>
 
     </footer>
-    <script src="script.js"></script>
+    <script src="index.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>
